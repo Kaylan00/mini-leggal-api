@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enum para o status da consulta
+enum ConsultationStatus {
+  PENDENTE
+  EM_ANDAMENTO
+  FINALIZADA
+}
+
+model Specialty {
+  id      Int      @id @default(autoincrement())
+  name    String   @unique
+  lawyers Lawyer[]
+}
+
+model Lawyer {
+  id            Int            @id @default(autoincrement())
+  name          String
+  oab           String         @unique // Novo campo
+  state         String         // Novo campo
+  bio           String?        // Novo campo opcional
+  specialty     Specialty      @relation(fields: [specialtyId], references: [id])
+  specialtyId   Int
+  consultations Consultation[]
+}
+
+model Consultation {
+  id          Int                @id @default(autoincrement())
+  userId      Int
+  description String
+  status      ConsultationStatus @default(PENDENTE) // Novo campo com Enum
+  lawyer      Lawyer             @relation(fields: [lawyerId], references: [id])
+  lawyerId    Int
+  createdAt   DateTime           @default(now())
+}

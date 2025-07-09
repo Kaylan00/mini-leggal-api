@@ -1,0 +1,32 @@
+{
+  "name": "mini-leggal-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kaylan00/mini-leggal-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kaylan00/mini-leggal-api/issues"
+  },
+  "homepage": "https://github.com/Kaylan00/mini-leggal-api#readme",
+  "dependencies": {
+    "@prisma/client": "^5.15.1",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4",
+    "prisma": "^5.15.1"
+  }
+}
